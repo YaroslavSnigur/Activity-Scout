@@ -1,0 +1,175 @@
+.nav {
+  background-color: grey;
+  padding: 10px;
+  display: flex;
+  height: 5vh;
+}
+
+.Logo {
+  color: white;
+  font-size: 24px;
+  margin: auto;
+  margin-right: 15px;
+}
+
+.SearchBar {
+  width: 70%;
+  font-size: 20px;
+  background-color: whitesmoke;
+  border-radius: 5px 0px 0px 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(224, 224, 224);
+}
+
+.SearchButton {
+  border-radius: 0px 5px 5px 0px;
+  border: none;
+  background-color: rgb(255, 118, 5);
+  color: white;
+  font-size: 16px;
+}
+
+.UploadSpotButton {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 15px;
+  color: white;
+  font-size: 20px;
+}
+
+.LoginButton,
+.SignUpButton {
+  font-size: 18px;
+  border-radius: 5px;
+  color: white;
+  width: 100px;
+}
+
+.LoginButton {
+  border: 1px solid white;
+  background-color: grey;
+}
+
+.SignUpButton {
+  background-color: rgb(255, 118, 5);
+  border: none;
+  margin-left: 15px;
+}
+
+.Filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(158, 158, 158);
+}
+
+.FilterButtonContainer {
+  margin: 5px 15px;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.FilterButton {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  border: none;
+}
+
+.FiltersButton {
+  width: 65px;
+  height: 45px;
+  border: none;
+  margin-left: 35px;
+  border-radius: 5px;
+  color: grey;
+}
+
+.Left,
+.Right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  border: 2px solid white;
+  background-color: rgb(158, 158, 158);
+  color: white;
+  font-size: 18px;
+}
+
+.MapContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: rgb(223, 223, 223);
+  background-image: url("https://www.pngkit.com/png/detail/79-792905_canada-black-map.png");
+  background-position: center;
+  background-repeat: no-repeat, repeat;
+  height: 40vh;
+}
+
+#Toggle {
+  background-color: rgb(63, 63, 63);
+  border-radius: 10px;
+  color: white;
+  width: 150px;
+  height: 35px;
+  margin: 15px 0;
+  border: none;
+}
+
+.Explore {
+  text-align: center;
+}
+
+.ExploreText {
+  font-size: 28px;
+}
+
+.ExploreItem {
+  text-align: left;
+  color: white;
+  display: inline-block;
+  margin: 20px;
+  background-color: rgb(211, 211, 211);
+  height: 30vh;
+  width: 30vh;
+}
+
+#ItemBar {
+  padding-left: 15px;
+  padding-top: 10px;
+  background-color: rgb(63, 63, 63);
+  width: auto;
+  height: 4vh;
+}
+
+.Footer {
+  height: 40vh;
+  background-color: rgb(211, 211, 211);
+}
+
+.FooterTextContainer {
+  font-size: 20px;
+  margin-left: 100px;
+  color: rgb(131, 131, 131);
+}
+
+.About {
+  font-size: 28px;
+  color: black;
+}
