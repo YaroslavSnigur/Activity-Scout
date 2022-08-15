@@ -6,8 +6,9 @@ const postSchema = new Schema(
     // Author: { type: Schema.Types.ObjectId, ref: "User" },
     Author: String,
     id: { type: String, default: uuidv4 },
-    LocationName: String,
+    LocationName: { type: String, required: true },
     Address: String,
+    Tags: [String],
     Fee: Number,
     Description: String,
     img: {

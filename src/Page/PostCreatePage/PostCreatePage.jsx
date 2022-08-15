@@ -19,7 +19,7 @@ function PostCreatePage() {
     description: "",
     //leave blank for photo
   });
-
+  const formRef = React.createRef();
   //   const [user, setUsers] = useState([]);
 
   //   useEffect(() => {
@@ -38,6 +38,7 @@ function PostCreatePage() {
   };
 
   const handleChange = (e) => {
+    console.log("---------------", e.target.checkValidity());
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -82,13 +83,15 @@ function PostCreatePage() {
         }}
         noValidate
         autoComplete="off"
+        ref={formRef}
       >
+        <br />
         <TextField
           id="outlined-basic"
-          label="locationName"
+          label="LocationName"
           variant="outlined"
-          name="locationName"
-          value={form.locationName}
+          name="LocationName"
+          value={form.LocationName || ""}
           onChange={handleChange}
           required
         />
