@@ -1,4 +1,5 @@
 import "./App.css";
+
 import React, { Component } from "react";
 import Nav from "./Components/Nav/Nav.jsx";
 import MapContainer from "./Components/MapContainer/MapContainer.jsx";
@@ -22,4 +23,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;
