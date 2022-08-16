@@ -7,32 +7,47 @@ import Explore from "../../Components/Explore/Explore.jsx";
 import About from "../../Components/About/About";
 
 function MainPage() {
-  //set state here
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    getPosts();
+    getFilteredPosts();
   }, []);
 
-  const getPosts = async () => {
+  const getFilteredPosts = async () => {
     try {
       const response = await fetch("/api/posts");
 
       const postsArr = await response.json();
 
-      console.log(postsArr);
       if (!postsArr.success) return;
       setPosts(postsArr.response);
     } catch (err) {
       console.log(err);
     }
   };
+
+  const filterPosts = (posts, query) => {
+    if (!query) {
+      return posts;
+    }
+
+    return posts.filter((post) => {
+      const postName = post.LocationName.toLowerCase();
+      return postName.includes(query);
+    });
+  };
+  const { search } = window.location;
+  const query = new URLSearchParams(search).get("s");
+  const [searchQuery, setSearchQuery] = useState(query || "");
+  const filteredPosts = filterPosts(posts, searchQuery);
+
   return (
     <div className="MainPage">
-      <Nav />
+      <Nav searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <Filter />
       <MapContainer />
-      <Explore posts={posts} />
+      <Explore posts={filteredPosts} />
+
       <About />
     </div>
   );

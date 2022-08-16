@@ -4,6 +4,7 @@ import SignUpForm from "../SignUpForm/SignUpForm";
 import MenuButton from "../MenuButton/MenuButton";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
+
 function Nav(props) {
   const [showLogin, setShowLogin] = useState({
     showLogin: false,
@@ -20,7 +21,10 @@ function Nav(props) {
         <p className="Logo">Scout</p>
       </Link>
 
-      <SearchBar />
+      <SearchBar
+        searchQuery={props.searchQuery}
+        setSearchQuery={props.setSearchQuery}
+      />
 
       <MenuButton
         name="Upload a Spot"

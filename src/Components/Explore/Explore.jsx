@@ -11,6 +11,7 @@ function Explore(props) {
       >
         <div id="ItemBar">Trail</div>
       </div>
+
       {props.posts.map((p) => (
         <TrailCard key={p._id} {...p} />
       ))}

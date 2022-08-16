@@ -1,17 +1,24 @@
+import { TextField } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import "./SearchBar.css";
 
-function SearchBar(props) {
-  return (
-    <div className="SearchBar">
-      <input name="searchBar" />
-      <Link to="/filter">
-        <button name="Search" className="SearchButton">
-          Search
-        </button>
-      </Link>
-    </div>
-  );
-}
+const SearchBar = (props) => (
+  <div className="SearchBar">
+    <form action="/" method="get">
+      <label htmlFor="header-search">
+        <span className="visually-hidden">Search blog posts</span>
+      </label>
+      <input
+        value={props.searchQuery}
+        onInput={(e) => props.setSearchQuery(e.target.value)}
+        type="text"
+        id="header-search"
+        placeholder="Search blog posts"
+        name="s"
+      />
 
+      <button className="SearchButton">Search</button>
+    </form>
+  </div>
+);
 export default SearchBar;
