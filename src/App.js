@@ -9,6 +9,7 @@ import About from "./Components/About/About.jsx";
 import MainPage from "./Page/MainPage/MainPage";
 import { Route, Routes } from "react-router-dom";
 import PostCreatePage from "./Page/PostCreatePage/PostCreatePage";
+import ProfilePage from "./Page/ProfilePage/ProfilePage";
 
 class App extends Component {
   //set state here
@@ -18,6 +19,7 @@ class App extends Component {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/createPost" element={<PostCreatePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </div>
     );

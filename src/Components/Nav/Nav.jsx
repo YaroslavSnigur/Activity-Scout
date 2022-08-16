@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import LoginForm from "../LoginForm/LoginForm";
 import SignUpForm from "../SignUpForm/SignUpForm";
 import MenuButton from "../MenuButton/MenuButton";
+import ProfileButton from "../PorfileButton/ProfileButton";
+
 function Nav(props) {
   const [showLogin, setShowLogin] = useState({
     showLogin: false,
@@ -24,6 +26,11 @@ function Nav(props) {
         name="Upload a Spot"
         styleRef="UploadSpotButton"
         route="/createPost"
+      />
+      <ProfileButton
+        name="Profile"
+        styleRef="UploadSpotButton"
+        route="/profile"
       />
       <button
         className="LoginButton"

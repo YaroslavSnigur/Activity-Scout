@@ -1,20 +1,19 @@
 import React from "react";
-// import "./ProfileCard.css";
+import "./ProfileCard.css";
 
 export default function ProfileCard(props) {
   return (
     <div id="profile-card">
-      <h1>PROFILE PAGE</h1>
       <div id="profile-info">
         <h2>{props.name}</h2>
         <p>{props.email}</p>
         <div id="profile-post">
           {/* <h2>Your Posts</h2> */}
-          <p>{props.LocationName}</p>
+          <p>{props.activityname}</p>
           <p>{props.activitynumber}</p>
-          <p>{props.Address}</p>
-          <p>{props.Fee}</p>
-          <p>{props.Description}</p>
+          <p>{props.activitylocation}</p>
+          <p>{props.activitycost}</p>
+          <p>{props.activitydescription}</p>
           <button class="edit">Edit</button>
           <button class="delete">Delete</button>
         </div>
