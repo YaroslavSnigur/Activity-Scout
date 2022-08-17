@@ -4,6 +4,8 @@ import SignUpForm from "../SignUpForm/SignUpForm";
 import MenuButton from "../MenuButton/MenuButton";
 import ProfileButton from "../PorfileButton/ProfileButton";
 
+import { Link } from "react-router-dom";
+import SearchBar from "../SearchBar/SearchBar";
 function Nav(props) {
   const [showLogin, setShowLogin] = useState({
     showLogin: false,
@@ -15,13 +17,13 @@ function Nav(props) {
 
   return (
     <div className="nav">
-      <p className="Logo">Brand</p>
-      <div className="SearchBar">
-        <p>hiking, capmsites, parks</p> <p>|</p>
-        <p>Toronto, ON</p>
-      </div>
-      <button className="SearchButton">Search</button>
-      <p className="UploadSpotButton">Upload a Spot</p>
+      <Link to="/">
+        {" "}
+        <p className="Logo">Scout</p>
+      </Link>
+
+      <SearchBar />
+
       <MenuButton
         name="Upload a Spot"
         styleRef="UploadSpotButton"
