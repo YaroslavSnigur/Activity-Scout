@@ -1,35 +1,8 @@
-.nav {
-  background-color: grey;
-  padding: 10px;
-  display: flex;
-  height: 5vh;
-}
-
 .Logo {
   color: white;
   font-size: 24px;
   margin: auto;
   margin-right: 15px;
-}
-
-.SearchBar {
-  width: 70%;
-  font-size: 20px;
-  background-color: whitesmoke;
-  border-radius: 5px 0px 0px 5px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  background-color: rgb(224, 224, 224);
-}
-
-.SearchButton {
-  border-radius: 0px 5px 5px 0px;
-  border: none;
-  background-color: rgb(255, 118, 5);
-  color: white;
-  font-size: 16px;
 }
 
 .UploadSpotButton {
@@ -40,25 +13,6 @@
   margin: 0 15px;
   color: white;
   font-size: 20px;
-}
-
-.LoginButton,
-.SignUpButton {
-  font-size: 18px;
-  border-radius: 5px;
-  color: white;
-  width: 100px;
-}
-
-.LoginButton {
-  border: 1px solid white;
-  background-color: grey;
-}
-
-.SignUpButton {
-  background-color: rgb(255, 118, 5);
-  border: none;
-  margin-left: 15px;
 }
 
 .Filters {

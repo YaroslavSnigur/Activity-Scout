@@ -21,7 +21,14 @@ function MainPage(props) {
 
   useEffect(() => {
     getFilteredPosts();
+    let token = localStorage.getItem("token");
+    if (token) {
+      // YOU DO: check expiry!
+      let userDoc = JSON.parse(atob(token.split(".")[1])).user; // decode jwt token
+      setUser({ user: userDoc });
+    }
   }, []);
+
 
   // const setUserInState = (incomingUserData) => {
   //   setUser(incomingUserData);
@@ -30,9 +37,10 @@ function MainPage(props) {
   const getFilteredPosts = async () => {
     try {
       const response = await fetch("/api/posts");
-
       const postsArr = await response.json();
+
       console.log("response", postsArr.response);
+
       if (!postsArr.success) return;
       setPosts(postsArr.response);
     } catch (err) {
@@ -66,9 +74,22 @@ function MainPage(props) {
       <Filter />
       <Map />
       <Explore posts={filteredPosts} />
-
       <About />
     </div>
   );
 }
 export default MainPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
