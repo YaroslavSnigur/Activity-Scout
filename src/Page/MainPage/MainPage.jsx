@@ -5,10 +5,20 @@ import Filter from "../../Components/Filter/Filter.jsx";
 import Explore from "../../Components/Explore/Explore.jsx";
 import About from "../../Components/About/About";
 
-function MainPage() {
+function MainPage(props) {
   const [posts, setPosts] = useState([]);
 
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
+  // useEffect(() => {
+
+  //   let token = localStorage.getItem("token");
+  //   if (token) {
+  //     // YOU DO: check expiry!
+  //     let userDoc = JSON.parse(atob(token.split(".")[1])).user; // decode jwt token
+  //     setUser({ user: userDoc });
+  //   }
+  // }, []);
+
   useEffect(() => {
     getFilteredPosts();
     let token = localStorage.getItem("token");
@@ -19,21 +29,24 @@ function MainPage() {
     }
   }, []);
 
-  const setUserInState = (incomingUserData) => {
-    setUser(incomingUserData);
-  };
+
+  // const setUserInState = (incomingUserData) => {
+  //   setUser(incomingUserData);
+  // };
 
   const getFilteredPosts = async () => {
     try {
       const response = await fetch("/api/posts");
       const postsArr = await response.json();
+
+      console.log("response", postsArr.response);
+
       if (!postsArr.success) return;
       setPosts(postsArr.response);
     } catch (err) {
       console.log(err);
     }
   };
-
 
   const filterPosts = (posts, query) => {
     if (!query) {
@@ -55,8 +68,8 @@ function MainPage() {
       <Nav
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        setUserInState={setUserInState}
-        user={user}
+        setUserInState={props.setUserInState}
+        user={props.user}
       />
       <Filter />
       <Map />

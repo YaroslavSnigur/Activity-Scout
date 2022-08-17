@@ -8,11 +8,14 @@ import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 
 function Nav(props) {
+  const [showLogin, setShowLogin] = useState({
+    showLogin: false,
+  });
 
-    const [showLogin, setShowLogin] = useState({
-        showLogin: false,
-    });
-
+  const [showSignUp, setShowSignUp] = useState({
+    showSignUp: false,
+  });
+  
     const [showSignUp, setShowSignUp] = useState({
         showSignUp: false,
     });
@@ -64,6 +67,7 @@ function Nav(props) {
 
             <div className="user-loggedin-container" style={{ display: props.user ? "flex" : "none" }}>
                 <div className="user-loggedin"><span>Logged as</span> <span className="user-loggedin-span">{props.user && props.user.name}</span></div>
+                <MenuButton name="My Profile" styleRef="" route="/profile" />
                 <button
                     className="SignOutButton"
                     onClick={handleLogout}
