@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Nav from "../../Components/Nav/Nav.jsx";
-import MapContainer from "../../Components/MapContainer/MapContainer.jsx";
+import Map from "../../Components/Map/Map.jsx";
 import Filter from "../../Components/Filter/Filter.jsx";
 import Explore from "../../Components/Explore/Explore.jsx";
-
 import About from "../../Components/About/About";
 
 function MainPage() {
@@ -45,7 +44,7 @@ function MainPage() {
     <div className="MainPage">
       <Nav searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <Filter />
-      <MapContainer />
+      <Map />
       <Explore posts={filteredPosts} />
 
       <About />

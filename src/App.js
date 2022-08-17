@@ -7,7 +7,7 @@ import PostCreatePage from "./Page/PostCreatePage/PostCreatePage";
 import FilteredResult from "./Page/FilteredResult/FilteredResult";
 
 class App extends Component {
-  //set state here
+ 
   render() {
     return (
       <div className="App">

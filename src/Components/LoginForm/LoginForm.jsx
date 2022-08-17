@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./LoginForm.css"
+import "./LoginForm.css";
 
 function LoginForm(props) {
 
@@ -9,21 +9,28 @@ function LoginForm(props) {
         error: "",
     });
 
-    const handleChange = (evt) => ({
-        [evt.target.name]: evt.target.value,
-        error: "",
-    });
+    const handleChange = (evt) => {
+        setUserLoggedIn({
+            ...userLoggedIn,
+            [evt.target.name]: evt.target.value,
+            error: "",
+        })
+    };
+
+    console.log(userLoggedIn.email);
+    console.log(userLoggedIn.password);
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
+
         try {
             // 1. POST our new user info to the server
-            const fetchResponse = await fetch("/api/users/login", {
+            const fetchResponse = await fetch("/users/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    email: evt.target.email,
-                    password: evt.target.password,
+                    email: userLoggedIn.email,
+                    password: userLoggedIn.password,
                 }),
             });
 
@@ -33,11 +40,12 @@ function LoginForm(props) {
             let token = await fetchResponse.json(); // 3. decode fetch response: get jwt token from srv
             localStorage.setItem("token", token); // 4. Stick token into localStorage
 
-            const userDoc = JSON.parse(Buffer.from(token.split(".")[1]), "base64").user; // 5. Decode the token + put user document into state
-            setUserLoggedIn(userDoc);
+            const userDoc = JSON.parse(atob(token.split(".")[1])).user; // 5. Decode the token + put user document into state
+            props.setUserInState(userDoc);
         } catch (err) {
-            console.log("SignupForm error", err);
-            setUserLoggedIn({ error: "Sign Up Failed - Try Again" });
+            console.log("LoginForm error", err);
+            console.log(err.message);
+            setUserLoggedIn({ error: "Log In Failed - Try Again" });
         }
     };
 
