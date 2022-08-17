@@ -8,9 +8,21 @@ import About from "../../Components/About/About";
 function MainPage() {
   const [posts, setPosts] = useState([]);
 
+  const [user, setUser] = useState([]);
   useEffect(() => {
     getFilteredPosts();
+
+    let token = localStorage.getItem("token");
+    if (token) {
+      // YOU DO: check expiry!
+      let userDoc = JSON.parse(atob(token.split(".")[1])).user; // decode jwt token
+      setUser({ user: userDoc });
+    }
   }, []);
+
+  const setUserInState = (incomingUserData) => {
+    setUser(incomingUserData);
+  };
 
   const getFilteredPosts = async () => {
     try {
@@ -44,11 +56,15 @@ function MainPage() {
 
   return (
     <div className="MainPage">
-      <Nav searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <Nav
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        setUserInState={setUserInState}
+        user={user}
+      />
       <Filter />
       <Map />
       <Explore posts={filteredPosts} />
-
 
       <About />
     </div>
