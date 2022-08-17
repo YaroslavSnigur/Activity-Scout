@@ -41,7 +41,9 @@ function ProfilePage() {
   const getEvent = async () => {
     try {
       const response = await fetch("/api/posts");
+
       const eventArr = await response.json();
+
       console.log(eventArr);
       if (!eventArr.sucsess) return;
       setEvent(eventArr.response);
