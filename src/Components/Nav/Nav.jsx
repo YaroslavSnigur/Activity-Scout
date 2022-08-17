@@ -37,7 +37,6 @@ function Nav(props) {
         styleRef="UploadSpotButton"
         route="/createPost"
       />
-      <MenuButton name="My Profile" styleRef="" route="/profile" />
       <div style={{ display: props.user ? "none" : "flex" }}>
         <button
           className="LoginButton"
@@ -71,6 +70,7 @@ function Nav(props) {
       <div style={{ display: props.user ? "flex" : "none" }}>
         {" "}
         Logged as {props.user && props.user.name}
+        <MenuButton name="My Profile" styleRef="" route="/profile" />
         <button className="SignOutButton" onClick={handleLogout}>
           SignOut
         </button>

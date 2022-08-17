@@ -32,7 +32,7 @@ function MainPage(props) {
       const response = await fetch("/api/posts");
 
       const postsArr = await response.json();
-
+      console.log("response", postsArr.response);
       if (!postsArr.success) return;
       setPosts(postsArr.response);
     } catch (err) {
