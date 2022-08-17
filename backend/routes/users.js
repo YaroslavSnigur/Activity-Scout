@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
-router.post("/profile", usersCtrl.login);
+
+
+
+
+// router.post("/profile", usersCtrl.login);
 
 
 const usersCtrl = require('../controllers/users');

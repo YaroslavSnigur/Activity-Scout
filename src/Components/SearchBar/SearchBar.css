@@ -7,3 +7,41 @@
   white-space: nowrap;
   width: 1px;
 }
+
+.SearchBar {
+  width: 50%;
+  height: 50px;
+}
+
+.SearchButton {
+  border-radius: 0px 5px 5px 0px;
+  border: none;
+  background-color: rgb(255, 118, 5);
+  color: white;
+  font-size: 20px;
+  height: 100%;
+}
+
+.search-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px 5px 5px 5px;
+  background-color: rgb(224, 224, 224);
+}
+
+.search-input {
+  text-align: center;
+  background-color: rgb(224, 224, 224);
+  font-size: 20px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+  color: grey;
+}

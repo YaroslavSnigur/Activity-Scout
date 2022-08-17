@@ -1,0 +1,61 @@
+.nav {
+    background-color: grey;
+    padding: 10px;
+    display: flex;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo-image {
+    display: flex;
+
+    height: 50px;
+}
+
+.LoginButton,
+.SignUpButton,
+.SignOutButton {
+    height: 50px;
+    font-size: 18px;
+    border-radius: 5px;
+    color: white;
+    width: 100px;
+}
+
+.LoginButton,
+.SignOutButton {
+    border: 1px solid white;
+    background-color: grey;
+}
+
+.SignUpButton {
+    background-color: rgb(255, 118, 5);
+    border: none;
+    margin-left: 15px;
+}
+
+.user-loggedin-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-loggedin {
+    height: 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+.user-loggedin-span {
+    color: rgb(255, 118, 5);
+}

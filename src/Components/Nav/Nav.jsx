@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LoginForm from "../LoginForm/LoginForm";
 import SignUpForm from "../SignUpForm/SignUpForm";
 import MenuButton from "../MenuButton/MenuButton";
+import "./Nav.css"
 
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
@@ -25,17 +26,13 @@ function Nav(props) {
 
     return (
         <div className="nav">
-            <Link to="/">
-
-        {" "}
-        <p className="Logo">Scout</p>
-      </Link>
-
-
-      <SearchBar
-        searchQuery={props.searchQuery}
-        setSearchQuery={props.setSearchQuery}
-      />
+            <div className="logo-image">
+                <img src="../../Logo-Black.png" alt="" />
+            </div>
+            <SearchBar
+                searchQuery={props.searchQuery}
+                setSearchQuery={props.setSearchQuery}
+            />
             <MenuButton
                 name="Upload a Spot"
                 styleRef="UploadSpotButton"
@@ -63,11 +60,14 @@ function Nav(props) {
                     showSignUp={showSignUp.showSignUp}
                     setShowSignUp={setShowSignUp}
                     setUserInState={props.setUserInState} user={props.user}
-                /> </div> <div style={{ display: props.user ? "flex" : "none" }}> Logged as {props.user && props.user.name}
+                /> </div>
+
+            <div className="user-loggedin-container" style={{ display: props.user ? "flex" : "none" }}>
+                <div className="user-loggedin"><span>Logged as</span> <span className="user-loggedin-span">{props.user && props.user.name}</span></div>
                 <button
                     className="SignOutButton"
                     onClick={handleLogout}
-                ></button>
+                >Sign Out</button>
 
             </div>
         </div>
