@@ -39,6 +39,7 @@ function SignUpForm(props) {
       let token = await fetchResponse.json();
       localStorage.setItem("token", token);
 
+
       const userDoc = JSON.parse(atob(token.split(".")[1])).user;
       props.setUserInState(userDoc);
     } catch (err) {
@@ -50,64 +51,54 @@ function SignUpForm(props) {
 
   const disable = userSignUp.password !== userSignUp.confirm;
 
-  return (
-    <div
-      className="signup-popup"
-      style={{ display: props.showSignUp ? "flex" : "none" }}
-    >
-      <div
-        onClick={() => {
-          props.setShowSignUp({ showSignUp: false });
-        }}
-      >
-        x
-      </div>
-      <div>
-        <form
-          autoComplete="off"
-          onSubmit={handleSubmit}
-          className="signup-form-container"
-        >
-          <label>Name</label>
-          <input
-            type="text"
-            name="name"
-            value={userSignUp.name}
-            onChange={handleChange}
-            required
-          />
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={userSignUp.email}
-            onChange={handleChange}
-            required
-          />
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={userSignUp.password}
-            onChange={handleChange}
-            required
-          />
-          <label>Confirm</label>
-          <input
-            type="password"
-            name="confirm"
-            value={userSignUp.confirm}
-            onChange={handleChange}
-            required
-          />
-          <button type="submit" disabled={disable}>
-            SIGN UP
-          </button>
-        </form>
-      </div>
-      <p className="error-message">&nbsp;{userSignUp.error}</p>
-    </div>
-  );
+
+    return (
+        <div className="signup-popup" style={{ display: props.showSignUp ? "flex" : "none" }}>
+            <div onClick={() => { props.setShowSignUp({ showSignUp: false }); }}>x</div>
+            <div>
+                <form autoComplete="off" onSubmit={handleSubmit} className="signup-form-container">
+                    <label>Name</label>
+                    <input
+                        type="text"
+                        name="name"
+                        value={userSignUp.name}
+                        onChange={handleChange}
+                        required
+                    />
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={userSignUp.email}
+                        onChange={handleChange}
+                        required
+                    />
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        value={userSignUp.password}
+                        onChange={handleChange}
+                        required
+                    />
+                    <label>Confirm</label>
+                    <input
+                        type="password"
+                        name="confirm"
+                        value={userSignUp.confirm}
+                        onChange={handleChange}
+                        required
+                    />
+                    <button type="submit" disabled={disable}>
+                        SIGN UP
+                    </button>
+                </form>
+            </div>
+            <p className="error-message">&nbsp;{userSignUp.error}</p>
+        </div>
+    )
+
+
 }
 
 export default SignUpForm;
