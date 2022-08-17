@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { InputLabel } from "@mui/material";
+
+
 import { Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 function PostCreatePage() {
   const [form, setForm] = useState({
@@ -43,6 +42,7 @@ function PostCreatePage() {
   };
 
   const createPost = async () => {
+    if (!formRef.current.checkValidity()) return;
     try {
       const response = await fetch("/api/posts", {
         method: "POST",
@@ -154,9 +154,11 @@ function PostCreatePage() {
               ))}
           </Select>
         </FormControl> */}
-        <Button variant="contained" onClick={createPost}>
-          Create
-        </Button>
+        <Link to="/">
+          <Button variant="contained" onClick={createPost}>
+            Create
+          </Button>
+        </Link>
       </Box>
     </div>
   );

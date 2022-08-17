@@ -1,10 +1,13 @@
 const Post = require("../models/post");
 var uuidv4 = require("uuid4");
+const User = require("../models/user");
+
 async function index(req, res) {
   try {
+    console.log("you are indexing.,,,,");
     const posts = await Post.find();
-    console.log(posts);
-    res.status(200).json({ success: true, response: posts });
+    const filteredPosts = await Post.find({ Tags: "1" });
+    res.status(200).json({ success: true, response: posts, filteredPosts });
   } catch (err) {
     console.log(err);
     res.status(500).json({ success: false, response: err });
@@ -33,7 +36,20 @@ async function create(req, res) {
   }
 }
 
+async function filter(req, res) {
+  try {
+    console.log(req.query);
+    const filteredPosts = await Post.find({ Tags: "1" });
+    console.log("find 1------------", filteredPosts);
+    res.status(200).json({ success: true, response: filteredPosts });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, response: err });
+  }
+}
+
 module.exports = {
   index,
   create,
+  filter,
 };
