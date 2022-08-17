@@ -1,11 +1,12 @@
 const Post = require("../models/post");
 var uuidv4 = require("uuid4");
+const User = require("../models/user");
+
 async function index(req, res) {
   try {
     console.log("you are indexing.,,,,");
     const posts = await Post.find();
     const filteredPosts = await Post.find({ Tags: "1" });
-    console.log(posts);
     res.status(200).json({ success: true, response: posts, filteredPosts });
   } catch (err) {
     console.log(err);

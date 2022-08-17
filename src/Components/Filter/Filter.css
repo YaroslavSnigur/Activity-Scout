@@ -1,0 +1,54 @@
+.Filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(158, 158, 158);
+}
+
+.FilterButtonContainer {
+    margin: 5px 15px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+}
+
+.FilterButtonContainer>img {
+    height: 50px;
+}
+
+.FilterButton {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    border: none;
+}
+
+.FiltersButton {
+    width: 85px;
+    height: 55px;
+    border: none;
+    margin-left: 35px;
+    border-radius: 5px;
+    color: grey;
+    font-size: 20px;
+}
+
+.Left,
+.Right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    border: 2px solid white;
+    background-color: rgb(158, 158, 158);
+    color: white;
+    font-size: 18px;
+}

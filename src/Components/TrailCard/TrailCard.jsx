@@ -1,13 +1,10 @@
 import React from "react";
-
+import "./TrailCard.css";
 function TrailCard(props) {
   return (
     <div className="ExploreItem">
-      <div id="ItemBar">
-        {props.LocationName}
-        <button className="ButtonEdit">Edit</button>
-        <button className="ButtonDelete">Delete</button>
-      </div>
+      <div id="ItemBar">{props.LocationName}</div>
+      <a href="">Details</a>
     </div>
   );
 }
