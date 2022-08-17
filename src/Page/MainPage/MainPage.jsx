@@ -1,47 +1,54 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Nav from "../../Components/Nav/Nav.jsx";
 import Map from "../../Components/Map/Map.jsx";
 import Filter from "../../Components/Filter/Filter.jsx";
 import Explore from "../../Components/Explore/Explore.jsx";
 import About from "../../Components/About/About";
 
-class MainPage extends Component {
-  state = {
-    user: null,
-  }
+function MainPage() {
+  const [posts, setPosts] = useState([]);
 
-  setUserInState = (incomingUserData) => {
-    this.setState({ user: incomingUserData })
-  }
+  useEffect(() => {
+    getFilteredPosts();
+  }, []);
 
-  componentDidMount() {
-    let token = localStorage.getItem('token')
-    if (token) {
-      // YOU DO: check expiry!
-      let userDoc = JSON.parse(atob(token.split('.')[1])).user // decode jwt token
-      this.setState({ user: userDoc })
+  const getFilteredPosts = async () => {
+    try {
+      const response = await fetch("/api/posts");
+
+      const postsArr = await response.json();
+
+      if (!postsArr.success) return;
+      setPosts(postsArr.response);
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
-  // componentDidMount() {
-  //   let token = localStorage.getItem('token')
-  //   if (token) {
-  //     // YOU DO: check expiry!
-  //     let userDoc = JSON.parse(Buffer.from(token.split(".")[1]), "base64").user // decode jwt token
-  //     this.setState({ user: userDoc })
-  //   }
-  // }
+  const filterPosts = (posts, query) => {
+    if (!query) {
+      return posts;
+    }
 
-  render() {
-    return (
-      <div className="MainPage">
-        <Nav setUserInState={this.setUserInState} user={this.state.user} />
-        <Filter />
-        <Map />
-        <Explore />
-        <About />
-      </div>
-    );
-  }
+    return posts.filter((post) => {
+      const postName = post.LocationName.toLowerCase();
+      return postName.includes(query);
+    });
+  };
+  const { search } = window.location;
+  const query = new URLSearchParams(search).get("s");
+  const [searchQuery, setSearchQuery] = useState(query || "");
+  const filteredPosts = filterPosts(posts, searchQuery);
+
+  return (
+    <div className="MainPage">
+      <Nav searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <Filter />
+      <Map />
+      <Explore posts={filteredPosts} />
+
+      <About />
+    </div>
+  );
 }
 export default MainPage;

@@ -35,11 +35,10 @@ function SignUpForm(props) {
                 }),
             });
 
-            if (!fetchResponse.ok) throw new Error("fetch failed - Bad request");
+      if (!fetchResponse.ok) throw new Error("fetch failed - Bad request");
 
-            let token = await fetchResponse.json();
-            localStorage.setItem("token", token);
-
+      let token = await fetchResponse.json();
+      localStorage.setItem("token", token);
             const userDoc = JSON.parse(atob(token.split(".")[1])).user;
             props.setUserInState(userDoc);
 
@@ -99,10 +98,4 @@ function SignUpForm(props) {
     )
 }
 
-export default SignUpForm
-
-
-
-
-
-
+export default SignUpForm;

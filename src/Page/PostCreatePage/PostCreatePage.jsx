@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 function PostCreatePage() {
   const [form, setForm] = useState({
@@ -39,6 +40,7 @@ function PostCreatePage() {
   };
 
   const createPost = async () => {
+    if (!formRef.current.checkValidity()) return;
     try {
       const response = await fetch("/api/posts", {
         method: "POST",
@@ -150,9 +152,11 @@ function PostCreatePage() {
               ))}
           </Select>
         </FormControl> */}
-        <Button variant="contained" onClick={createPost}>
-          Create
-        </Button>
+        <Link to="/">
+          <Button variant="contained" onClick={createPost}>
+            Create
+          </Button>
+        </Link>
       </Box>
     </div>
   );
