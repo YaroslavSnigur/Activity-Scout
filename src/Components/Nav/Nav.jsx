@@ -22,17 +22,12 @@ function Nav(props) {
     setShowLogin({ showLogin: false });
   };
 
-
-    return (
-        <div className="nav">
-            <Link to="/">
-
+  return (
+    <div className="nav">
+      <Link to="/">
         {" "}
         <p className="Logo">Scout</p>
       </Link>
-
-
-
       <SearchBar
         searchQuery={props.searchQuery}
         setSearchQuery={props.setSearchQuery}
@@ -75,6 +70,7 @@ function Nav(props) {
       <div style={{ display: props.user ? "flex" : "none" }}>
         {" "}
         Logged as {props.user && props.user.name}
+        <MenuButton name="My Profile" styleRef="" route="/profile" />
         <button className="SignOutButton" onClick={handleLogout}>
           SignOut
         </button>

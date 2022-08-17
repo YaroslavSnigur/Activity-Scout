@@ -1,50 +1,34 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import ProfileCard from "../../Components/ProfileCard/ProfileCard";
-// import "./ProfileCard.css";
 
-// function ProfilePage() {
-//   const [user, setUser] = useState([]);
-
-//   useEffect(() => {
-//     getUser();
-//   }, []);
-
-//   const getUser = async () => {
-//     try {
-//       const response = await fetch("/api/user");
-//       const userArr = await response.json();
-//       console.log(userArr);
-//       if (!userArr.sucsess) return;
-//       setUser(userArr.response);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-
-//   return (
-//     <div className="ProfilePage">
-//       <h1>Profile Page</h1>
-//       {user && user.map((u) => <ProfileCard {...u} />)}
-//     </div>
-//   );
-// }
-
-// export default ProfilePage;
-
-function ProfilePage() {
-  const [event, setEvent] = useState([]);
+function ProfilePage(props) {
+  const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
-    getEvent();
-  }, []);
-
-  const getEvent = async () => {
+    getPosts();
+    let token = localStorage.getItem("token");
+    if (token) {
+      // YOU DO: check expiry!
+      let userDoc = JSON.parse(atob(token.split(".")[1])).user; // decode jwt token
+      setUser(userDoc);
+    }
+  }, [posts]);
+  const getPosts = async () => {
     try {
       const response = await fetch("/api/posts");
-      const eventArr = await response.json();
-      console.log(eventArr);
-      if (!eventArr.sucsess) return;
-      setEvent(eventArr.response);
+
+      const postsArr = await response.json();
+      let foundEvent = [];
+      postsArr.response.forEach((element) => {
+        if (element.Author === user.name) {
+          foundEvent.push(element);
+        }
+      });
+
+      if (!postsArr.success) return;
+      setPosts(foundEvent);
     } catch (err) {
       console.log(err);
     }
@@ -53,7 +37,12 @@ function ProfilePage() {
   return (
     <div className="ProfilePage">
       <h1>Profile Page</h1>
-      {event && event.map((e) => <ProfileCard {...e} />)}
+      <p>name:{user.name}</p>
+      <p>email:{user.email}</p>
+      {posts && posts.map((e) => <ProfileCard {...e} />)}
+      <Link to="/">
+        <button>BACK</button>
+      </Link>
     </div>
   );
 }
