@@ -1,39 +1,17 @@
 import React, { useState, useEffect } from "react";
 import ProfileCard from "../../Components/ProfileCard/ProfileCard";
-// import "./ProfileCard.css";
 
-// function ProfilePage() {
-//   const [user, setUser] = useState([]);
-
-//   useEffect(() => {
-//     getUser();
-//   }, []);
-
-//   const getUser = async () => {
-//     try {
-//       const response = await fetch("/api/user");
-//       const userArr = await response.json();
-//       console.log(userArr);
-//       if (!userArr.sucsess) return;
-//       setUser(userArr.response);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-
-//   return (
-//     <div className="ProfilePage">
-//       <h1>Profile Page</h1>
-//       {user && user.map((u) => <ProfileCard {...u} />)}
-//     </div>
-//   );
-// }
-
-// export default ProfilePage;
-
-function ProfilePage() {
+function ProfilePage(props) {
   const [event, setEvent] = useState([]);
-
+  // const [user, setUser] = useState([]);
+  // useEffect(() => {
+  //   let token = localStorage.getItem("token");
+  //   if (token) {
+  //     // YOU DO: check expiry!
+  //     let userDoc = JSON.parse(atob(token.split(".")[1])).user; // decode jwt token
+  //     setUser({ user: userDoc });
+  //   }
+  // }, []);
   useEffect(() => {
     getEvent();
   }, []);
@@ -44,17 +22,19 @@ function ProfilePage() {
 
       const eventArr = await response.json();
 
-      console.log(eventArr);
+      console.log(props.user.name);
       if (!eventArr.sucsess) return;
       setEvent(eventArr.response);
     } catch (err) {
       console.log(err);
     }
   };
-
+  const userInfo = props.user;
   return (
     <div className="ProfilePage">
       <h1>Profile Page</h1>
+      <p>name:{userInfo.name}</p>
+      <p>email:{userInfo.email}</p>
       {event && event.map((e) => <ProfileCard {...e} />)}
     </div>
   );

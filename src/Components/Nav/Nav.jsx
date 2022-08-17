@@ -22,17 +22,12 @@ function Nav(props) {
     setShowLogin({ showLogin: false });
   };
 
-
-    return (
-        <div className="nav">
-            <Link to="/">
-
+  return (
+    <div className="nav">
+      <Link to="/">
         {" "}
         <p className="Logo">Scout</p>
       </Link>
-
-
-
       <SearchBar
         searchQuery={props.searchQuery}
         setSearchQuery={props.setSearchQuery}
@@ -42,6 +37,7 @@ function Nav(props) {
         styleRef="UploadSpotButton"
         route="/createPost"
       />
+      <MenuButton name="My Profile" styleRef="" route="/profile" />
       <div style={{ display: props.user ? "none" : "flex" }}>
         <button
           className="LoginButton"
