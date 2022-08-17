@@ -21,4 +21,5 @@ const SearchBar = (props) => (
     </form>
   </div>
 );
+
 export default SearchBar;

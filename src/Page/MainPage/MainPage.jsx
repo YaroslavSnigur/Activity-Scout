@@ -18,12 +18,14 @@ function MainPage() {
 
       const postsArr = await response.json();
 
+
       if (!postsArr.success) return;
       setPosts(postsArr.response);
     } catch (err) {
       console.log(err);
     }
   };
+
 
   const filterPosts = (posts, query) => {
     if (!query) {
@@ -46,6 +48,7 @@ function MainPage() {
       <Filter />
       <Map />
       <Explore posts={filteredPosts} />
+
 
       <About />
     </div>

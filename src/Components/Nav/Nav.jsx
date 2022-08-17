@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LoginForm from "../LoginForm/LoginForm";
 import SignUpForm from "../SignUpForm/SignUpForm";
 import MenuButton from "../MenuButton/MenuButton";
+
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 
@@ -25,9 +26,11 @@ function Nav(props) {
     return (
         <div className="nav">
             <Link to="/">
+
         {" "}
         <p className="Logo">Scout</p>
       </Link>
+
 
       <SearchBar
         searchQuery={props.searchQuery}

@@ -39,6 +39,7 @@ function SignUpForm(props) {
 
       let token = await fetchResponse.json();
       localStorage.setItem("token", token);
+
             const userDoc = JSON.parse(atob(token.split(".")[1])).user;
             props.setUserInState(userDoc);
 
@@ -96,6 +97,7 @@ function SignUpForm(props) {
             <p className="error-message">&nbsp;{userSignUp.error}</p>
         </div>
     )
+
 }
 
 export default SignUpForm;

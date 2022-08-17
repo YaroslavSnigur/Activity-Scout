@@ -3,9 +3,10 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 6;
 
+
 module.exports = {
   create,
-  login
+  login,
 };
 
 async function create(req, res) {
@@ -26,6 +27,6 @@ async function login(req, res) {
     const token = jwt.sign({ user }, process.env.SECRET,{ expiresIn: '24h' });
     res.status(200).json(token)
   } catch {
-    res.status(400).json('Bad Credentials');
+    res.status(400).json("Bad Credentials");
   }
 }

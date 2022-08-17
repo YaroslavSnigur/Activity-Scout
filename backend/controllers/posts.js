@@ -5,7 +5,6 @@ async function index(req, res) {
     console.log("you are indexing.,,,,");
     const posts = await Post.find();
     const filteredPosts = await Post.find({ Tags: "1" });
-    console.log(req.body);
     res.status(200).json({ success: true, response: posts, filteredPosts });
   } catch (err) {
     console.log(err);
@@ -36,7 +35,15 @@ async function create(req, res) {
 }
 
 async function filter(req, res) {
-  console.log("fILTERING..", req.body);
+  try {
+    console.log(req.query);
+    const filteredPosts = await Post.find({ Tags: "1" });
+    console.log("find 1------------", filteredPosts);
+    res.status(200).json({ success: true, response: filteredPosts });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, response: err });
+  }
 }
 
 module.exports = {

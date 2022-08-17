@@ -9,6 +9,7 @@ const app = express();
 app.use(logger("dev"));
 app.use(express.json());
 app.use("/api/posts", require("./backend/routes/posts"));
+
 app.use(express.static(path.join(__dirname, "build")));
 app.use("/api/posts", require("./backend/routes/posts"));
 app.use("/users", require("./backend/routes/users.js"));

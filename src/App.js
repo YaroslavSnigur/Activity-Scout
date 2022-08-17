@@ -4,6 +4,10 @@ import React, { Component } from "react";
 import MainPage from "./Page/MainPage/MainPage";
 import { Route, Routes } from "react-router-dom";
 import PostCreatePage from "./Page/PostCreatePage/PostCreatePage";
+
+import ProfilePage from "./Page/ProfilePage/ProfilePage";
+
+
 import FilteredResult from "./Page/FilteredResult/FilteredResult";
 
 class App extends Component {
@@ -14,6 +18,9 @@ class App extends Component {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/createPost" element={<PostCreatePage />} />
+
+          <Route path="/profile" element={<ProfilePage />} />
+
           <Route path="/filter" element={<FilteredResult />} />
         </Routes>
       </div>
