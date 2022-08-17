@@ -1,23 +1,15 @@
 import React from "react";
+import ItemBar from "../ItemBar/ItemBar";
 
 function Explore(props) {
     return (
-        < div className="Explore" >
+        <div className="Explore">
             <p className="ExploreText">Explore</p>
-            <div className="Explo
-        {/* create nested components for trails using map? */}reItem">
-                <div id="ItemBar">Trail</div>
-            </div>
-            <div className="ExploreItem">
-                <div id="ItemBar">Trail</div>
-            </div>
-            <div className="ExploreItem">
-                <div id="ItemBar">Trail</div>
-            </div>
-            <div className="ExploreItem">
-                <div id="ItemBar">Trail</div>
-            </div>
-        </div >
+            <ItemBar />
+            <ItemBar />
+            <ItemBar />
+            <ItemBar />
+        </div>
     );
 }
 

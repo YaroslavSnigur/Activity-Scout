@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import "./SignUpForm.css"
+import React, { useState, useEffect } from 'react'
+import "./SignUpForm.css";
+
 
 function SignUpForm(props) {
-    const [user, setUser] = useState({
+    const [userSignUp, setUserSignUp] = useState({
         name: "",
         email: "",
         password: "",
@@ -10,21 +11,27 @@ function SignUpForm(props) {
         error: "",
     });
 
-    const handleChange = (evt) => ({
-        [evt.target.name]: evt.target.value,
-        error: "",
-    });
+    const handleChange = (evt) => {
+        setUserSignUp({
+            ...userSignUp,
+            [evt.target.name]: evt.target.value,
+            error: "",
+        })
+    };
+
+    console.log(userSignUp.password);
+    console.log(userSignUp.confirm);
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
         try {
-            const fetchResponse = await fetch("/api/users/signup", {
+            const fetchResponse = await fetch("/users/signup", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    name: evt.target.name,
-                    email: evt.target.email,
-                    password: evt.target.password,
+                    name: userSignUp.name,
+                    email: userSignUp.email,
+                    password: userSignUp.password,
                 }),
             });
 
@@ -33,16 +40,17 @@ function SignUpForm(props) {
             let token = await fetchResponse.json();
             localStorage.setItem("token", token);
 
-            const userDoc = JSON.parse(Buffer.from(token.split(".")[1]), "base64").user;
-            setUser(userDoc);
+            const userDoc = JSON.parse(atob(token.split(".")[1])).user;
+            props.setUserInState(userDoc);
+
         } catch (err) {
             console.log("SignupForm error", err);
             console.log(err.message);
-            setUser({ error: "Sign Up Failed - Try Again" });
+            setUserSignUp({ error: "Sign Up Failed - Try Again" });
         }
     };
 
-    const disable = user.password !== user.confirm;
+    const disable = userSignUp.password !== userSignUp.confirm;
 
     return (
         <div className="signup-popup" style={{ display: props.showSignUp ? "flex" : "none" }}>
@@ -53,7 +61,7 @@ function SignUpForm(props) {
                     <input
                         type="text"
                         name="name"
-                        value={user.name}
+                        value={userSignUp.name}
                         onChange={handleChange}
                         required
                     />
@@ -61,7 +69,7 @@ function SignUpForm(props) {
                     <input
                         type="email"
                         name="email"
-                        value={user.email}
+                        value={userSignUp.email}
                         onChange={handleChange}
                         required
                     />
@@ -69,7 +77,7 @@ function SignUpForm(props) {
                     <input
                         type="password"
                         name="password"
-                        value={user.password}
+                        value={userSignUp.password}
                         onChange={handleChange}
                         required
                     />
@@ -77,7 +85,7 @@ function SignUpForm(props) {
                     <input
                         type="password"
                         name="confirm"
-                        value={user.confirm}
+                        value={userSignUp.confirm}
                         onChange={handleChange}
                         required
                     />
@@ -86,7 +94,7 @@ function SignUpForm(props) {
                     </button>
                 </form>
             </div>
-            <p className="error-message">&nbsp;{user.error}</p>
+            <p className="error-message">&nbsp;{userSignUp.error}</p>
         </div>
     )
 }
