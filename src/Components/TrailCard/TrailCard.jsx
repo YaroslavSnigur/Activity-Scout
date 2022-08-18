@@ -4,6 +4,8 @@ function TrailCard(props) {
   return (
     <div className="ExploreItem">
       <div id="ItemBar">{props.LocationName}</div>
+      <img className="photo" src={props.img} />
+      <br />
       <a href="">Details</a>
     </div>
   );

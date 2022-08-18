@@ -13,8 +13,9 @@ app.use("/api/posts", require("./backend/routes/posts"));
 app.use("/users", require("./backend/routes/users.js"));
 
 app.use(require("./backend/config/auth"));
-app.use(express.static(path.join(__dirname, "build")));
 
+app.use(express.static(path.join(__dirname, "build")));
+app.use("/api/posts/images", express.static(__dirname + "/public/images/"));
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });

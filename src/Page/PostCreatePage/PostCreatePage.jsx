@@ -15,12 +15,11 @@ function PostCreatePage(props) {
     tags: [],
     fee: "",
     description: "",
-    //leave blank for photo
+    img: "",
   });
   const formRef = React.createRef();
 
   const handleChange = (e) => {
-    console.log("---------------", e.target.checkValidity());
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -41,11 +40,13 @@ function PostCreatePage(props) {
         tags: [],
         fee: "",
         description: "",
+        img: "",
       });
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data);
     }
   };
+
   return (
     <div className="PostCreatePage">
       <AppBar position="static">
@@ -119,6 +120,16 @@ function PostCreatePage(props) {
         />
         <br />
 
+        <TextField
+          id="outlined-basic"
+          label="img"
+          variant="outlined"
+          name="img"
+          value={form.img}
+          onChange={handleChange}
+          required
+        />
+        <br />
         <Link to="/">
           <Button variant="contained" onClick={createPost}>
             Create

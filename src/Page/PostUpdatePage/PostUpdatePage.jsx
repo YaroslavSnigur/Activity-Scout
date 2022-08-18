@@ -26,7 +26,7 @@ function PostUpdatePage(props) {
       tags: post.Tags,
       fee: post.Fee,
       description: post.Description,
-      //leave blank for photo
+      img: post.img,
     });
   };
 
@@ -54,6 +54,7 @@ function PostUpdatePage(props) {
         tags: [],
         fee: "",
         description: "",
+        img: "",
       });
     } catch (err) {
       console.log(err);
@@ -132,6 +133,16 @@ function PostUpdatePage(props) {
         />
         <br />
 
+        <TextField
+          id="outlined-basic"
+          label="img"
+          variant="outlined"
+          name="img"
+          value={form.img}
+          onChange={handleChange}
+          required
+        />
+        <br />
         <Link to="/profile">
           <Button variant="contained" onClick={updatePost}>
             Update

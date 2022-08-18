@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 var uuidv4 = require("uuid4");
 const User = require("../models/user");
+const multer = require("multer");
 
 async function index(req, res) {
   try {
@@ -26,8 +27,9 @@ async function create(req, res) {
       Tags: req.body.tags,
       Fee: req.body.fee,
       Description: req.body.description,
-      //leave blank for img
+      img: req.body.img,
     });
+    console.log(post);
     res.status(200).json({ success: true, response: post });
   } catch (err) {
     console.log(err);
