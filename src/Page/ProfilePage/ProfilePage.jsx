@@ -8,13 +8,13 @@ function ProfilePage(props) {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    getPosts();
     let token = localStorage.getItem("token");
     if (token) {
       // YOU DO: check expiry!
       let userDoc = JSON.parse(atob(token.split(".")[1])).user; // decode jwt token
       setUser(userDoc);
     }
+    getPosts();
   }, []);
   const getPosts = async () => {
     try {
@@ -51,7 +51,6 @@ function ProfilePage(props) {
           </Link>
         </div>
       </div>
-
     </div>
   );
 }

@@ -8,24 +8,9 @@ import About from "../../Components/About/About";
 function MainPage(props) {
   const [posts, setPosts] = useState([]);
 
-  // const [user, setUser] = useState([]);
-  // useEffect(() => {
-
-  //   let token = localStorage.getItem("token");
-  //   if (token) {
-  //     // YOU DO: check expiry!
-  //     let userDoc = JSON.parse(atob(token.split(".")[1])).user; // decode jwt token
-  //     setUser({ user: userDoc });
-  //   }
-  // }, []);
-
   useEffect(() => {
     getFilteredPosts();
   }, []);
-
-  // const setUserInState = (incomingUserData) => {
-  //   setUser(incomingUserData);
-  // };
 
   const getFilteredPosts = async () => {
     try {
