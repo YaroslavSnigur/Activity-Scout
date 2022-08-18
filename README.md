@@ -6,6 +6,7 @@ Ever wondered which outdoor activities or events are near you? Well the solution
 
 # Sceenshots
 <img width="1728" alt="Screen Shot 2022-08-18 at 4 59 43 PM" src="https://user-images.githubusercontent.com/105532231/185494424-7532b93e-1806-410c-a821-ca05743c09db.png">
+<img width="1728" alt="Screen Shot 2022-08-18 at 5 04 26 PM" src="https://user-images.githubusercontent.com/105532231/185494606-c1b95367-05f6-4f44-854d-ba8d98aac42c.png">
 <img width="1728" alt="Screen Shot 2022-08-18 at 5 00 46 PM" src="https://user-images.githubusercontent.com/105532231/185494445-687ec44d-f051-4852-b6a6-e9e6c34d7cf8.png">
 
 # Planning Material
