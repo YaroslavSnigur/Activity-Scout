@@ -34,18 +34,6 @@ async function create(req, res) {
   }
 }
 
-async function filter(req, res) {
-  try {
-    console.log(req.query);
-    const filteredPosts = await Post.find({ Tags: "1" });
-    console.log("find 1------------", filteredPosts);
-    res.status(200).json({ success: true, response: filteredPosts });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ success: false, response: err });
-  }
-}
-
 async function deletePost(req, res) {
   console.log(req.body);
   try {
@@ -58,30 +46,8 @@ async function deletePost(req, res) {
   }
 }
 
-// async function editPost(req, res) {
-//   console.log(req.body);
-//   try {
-//     let posts = await PostModel.findByIdAndUpdate(
-//       { _id: req.body.id },
-//       {
-//         LocationName: req.body.LocationName,
-//         Address: req.body.address,
-//         Tags: req.body.tags,
-//         Fee: req.body.fee,
-//         Descrioption: req.body.descrioption,
-//       },
-//       { new: true }
-//     ).exec();
-//     res.status(200).json(posts);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// }
-
 module.exports = {
   index,
   create,
-  filter,
   deletePost,
-  // editPost,
 };
