@@ -11,10 +11,7 @@ const postSchema = new Schema(
     Tags: [String],
     Fee: Number,
     Description: String,
-    img: {
-      data: Buffer,
-      contentType: String,
-    },
+    img: String,
   },
   {
     timestamps: true,

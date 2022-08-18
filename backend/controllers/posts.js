@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 var uuidv4 = require("uuid4");
 const User = require("../models/user");
+const multer = require("multer");
 
 async function index(req, res) {
   try {
@@ -26,7 +27,10 @@ async function create(req, res) {
       Tags: req.body.tags,
       Fee: req.body.fee,
       Description: req.body.description,
+
+      img: req.body.img,
     });
+    console.log(post);
     res.status(200).json({ success: true, response: post });
   } catch (err) {
     console.log(err);
@@ -46,8 +50,33 @@ async function deletePost(req, res) {
   }
 }
 
+async function updatePost(req, res) {
+  const oldPost = await Post.findById(req.params.id);
+
+  const user = await User.findById(req.body.author);
+  try {
+    const post = await Post.updateOne(
+      { _id: req.params.id },
+      {
+        Author: user,
+        LocationName: req.body.LocationName,
+        Address: req.body.address,
+        Tags: req.body.tags,
+        Fee: req.body.fee,
+        Description: req.body.description,
+        //leave blank for img
+      }
+    );
+
+    res.status(200).json({ success: true, response: post });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
 module.exports = {
   index,
   create,
   deletePost,
+  update: updatePost,
 };

@@ -1,0 +1,35 @@
+.PostCreatePage {
+    height: 100vh;
+    background-color: whitesmoke;
+    margin: auto;
+}
+
+.create-post-header {
+    width: 100vw;
+    height: 40px;
+    background-color: rgb(75, 75, 75);
+    padding-left: 20px;
+    font-size: 48px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.MuiBox-root.css-xn6ruc {
+    padding-left: 20px;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-sghohy-MuiButtonBase-root-MuiButton-root {
+    background-color: rgb(255, 118, 5);
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-sghohy-MuiButtonBase-root-MuiButton-root>a:link,
+a:link,
+a:visited {
+    text-decoration: none;
+}
+
+.post-back-button {
+    margin: 10px;
+}

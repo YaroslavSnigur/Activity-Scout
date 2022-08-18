@@ -4,10 +4,8 @@ import React, { Component } from "react";
 import MainPage from "./Page/MainPage/MainPage";
 import { Route, Routes } from "react-router-dom";
 import PostCreatePage from "./Page/PostCreatePage/PostCreatePage";
-
+import PostUpdatePage from "./Page/PostUpdatePage/PostUpdatePage";
 import ProfilePage from "./Page/ProfilePage/ProfilePage";
-
-import FilteredResult from "./Page/FilteredResult/FilteredResult";
 
 class App extends Component {
   //-----------
@@ -51,7 +49,10 @@ class App extends Component {
             element={<ProfilePage user={this.state.user} />}
           />
 
-          <Route path="/filter" element={<FilteredResult />} />
+          <Route
+            path="/update/:id"
+            element={<PostUpdatePage user={this.state.user} />}
+          />
         </Routes>
       </div>
     );

@@ -1,34 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+
 import { Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import "./PostCreatePage.css";
+import { Link, useParams } from "react-router-dom";
 
-function PostCreatePage(props) {
-  const [form, setForm] = useState({
-    author: props.user._id,
-    locationName: "",
-    address: "",
-    tags: [],
-    fee: "",
-    description: "",
+function PostUpdatePage(props) {
+  const params = useParams();
+  const [form, setForm] = useState([]);
+  useEffect(() => {
+    getPostDetails();
+  }, []);
+  const getPostDetails = async () => {
+    console.log(props.user._id);
+    let result = await fetch(`/api/posts`);
+    result = await result.json();
+    let post = result.response.find((element) => element._id === params.id);
+    console.log(post.Address);
+    setForm({
+      author: props.user._id,
+      LocationName: post.LocationName,
+      address: post.Address,
+      tags: post.Tags,
+      fee: post.Fee,
+      description: post.Description,
+      img: post.img,
+    });
+  };
 
-    img: "",
-  });
   const formRef = React.createRef();
 
   const handleChange = (e) => {
+    console.log("---------------", e.target.checkValidity());
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const createPost = async () => {
+  const updatePost = async () => {
     if (!formRef.current.checkValidity()) return;
     try {
-      const response = await fetch("/api/posts", {
-        method: "POST",
+      const response = await fetch(`/api/posts/update/${params.id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -44,14 +57,18 @@ function PostCreatePage(props) {
         img: "",
       });
     } catch (err) {
-      console.log(err.response.data);
+      console.log(err);
     }
   };
-
   return (
     <div className="PostCreatePage">
       <AppBar position="static">
-        <Typography className="create-post-header" variant="h4" component="h4">
+        <Typography
+          variant="h3"
+          noWrap
+          component="h1"
+          sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+        >
           Creating A New Spot
         </Typography>
       </AppBar>
@@ -63,7 +80,6 @@ function PostCreatePage(props) {
         noValidate
         autoComplete="off"
         ref={formRef}
-        className="create-post-form"
       >
         <br />
         <TextField
@@ -116,7 +132,6 @@ function PostCreatePage(props) {
           required
         />
         <br />
-        <br />
 
         <TextField
           id="outlined-basic"
@@ -128,23 +143,16 @@ function PostCreatePage(props) {
           required
         />
         <br />
-        <Link to="/">
-          <Button
-            className="post-create-button"
-            variant="contained"
-            onClick={createPost}
-          >
-            Create
+        <Link to="/profile">
+          <Button variant="contained" onClick={updatePost}>
+            Update
           </Button>
           <br /> <br />
-          <div className="post-back-button">
-            {" "}
-            <Button variant="contained">Back</Button>
-          </div>
+          <Button variant="contained">Back</Button>
         </Link>
       </Box>
     </div>
   );
 }
 
-export default PostCreatePage;
+export default PostUpdatePage;
