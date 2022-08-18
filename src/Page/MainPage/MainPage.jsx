@@ -23,7 +23,6 @@ function MainPage(props) {
     getFilteredPosts();
   }, []);
 
-
   // const setUserInState = (incomingUserData) => {
   //   setUser(incomingUserData);
   // };
@@ -73,17 +72,3 @@ function MainPage(props) {
   );
 }
 export default MainPage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-

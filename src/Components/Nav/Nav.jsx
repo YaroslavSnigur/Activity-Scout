@@ -56,12 +56,19 @@ function Nav(props) {
                 >
                     Sign Up
                 </button>
-                <LoginForm showLogin={showLogin.showLogin} setShowLogin={setShowLogin} setUserInState={props.setUserInState} user={props.user} />
+                <LoginForm
+                    showLogin={showLogin.showLogin}
+                    setShowLogin={setShowLogin}
+                    setUserInState={props.setUserInState}
+                    user={props.user}
+                />
                 <SignUpForm
                     showSignUp={showSignUp.showSignUp}
                     setShowSignUp={setShowSignUp}
-                    setUserInState={props.setUserInState} user={props.user}
-                /> </div>
+                    setUserInState={props.setUserInState}
+                    user={props.user}
+                />{" "}
+            </div>
 
             <div className="user-loggedin-container" style={{ display: props.user ? "flex" : "none" }}>
                 <div className="user-loggedin"><span>Logged as</span> <span className="user-loggedin-span">{props.user && props.user.name}</span></div>
