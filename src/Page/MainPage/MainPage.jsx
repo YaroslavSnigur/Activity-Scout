@@ -21,12 +21,6 @@ function MainPage(props) {
 
   useEffect(() => {
     getFilteredPosts();
-    let token = localStorage.getItem("token");
-    if (token) {
-      // YOU DO: check expiry!
-      let userDoc = JSON.parse(atob(token.split(".")[1])).user; // decode jwt token
-      setUser({ user: userDoc });
-    }
   }, []);
 
 

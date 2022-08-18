@@ -4,20 +4,11 @@ function About(props) {
   return (
     <div className="Footer">
       <div className="FooterTextContainer">
-        <p className="About">About</p>
-        <p>
-          {props.fee}
-          <br />
-          etc
-          <br />
-          etc
-          <br />
-          etc
-          <br />
-          etc
-          <br />
-          etc
-        </p>
+        <div><p className="About">About</p></div>
+        <div><p>Job Portal</p></div>
+        <div><p>Team</p></div>
+        <div><p>Marketing</p></div>
+        <div><p>Contact Us</p></div>
       </div>
     </div>
   );
