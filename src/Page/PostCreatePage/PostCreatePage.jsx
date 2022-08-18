@@ -14,7 +14,6 @@ function PostCreatePage(props) {
     tags: [],
     fee: "",
     description: "",
-    //leave blank for photo
   });
   const formRef = React.createRef();
 

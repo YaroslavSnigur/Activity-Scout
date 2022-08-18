@@ -22,7 +22,7 @@ function ProfilePage(props) {
       const postsArr = await response.json();
       let foundEvent = [];
       postsArr.response.forEach((element) => {
-        if (element.Author === user._id) {
+        if (element.Author === props.user._id) {
           foundEvent.push(element);
         }
       });
@@ -34,12 +34,26 @@ function ProfilePage(props) {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      let fetchResponse = await fetch("/api/posts/", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ p_id: id }),
+      });
+      if (!fetchResponse.ok) throw new Error("Fetch failed");
+      let posts = await fetchResponse.json();
+      setPosts(posts);
+    } catch (err) {}
+  };
+
   return (
     <div className="ProfilePage">
       <h1>Profile Page</h1>
       <p>name:{user.name}</p>
       <p>email:{user.email}</p>
-      {posts && posts.map((e) => <ProfileCard {...e} />)}
+      {posts &&
+        posts.map((e) => <ProfileCard {...e} handleDelete={handleDelete} />)}
       <Link to="/">
         <button>BACK</button>
       </Link>

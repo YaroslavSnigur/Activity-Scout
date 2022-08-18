@@ -26,7 +26,6 @@ async function create(req, res) {
       Tags: req.body.tags,
       Fee: req.body.fee,
       Description: req.body.description,
-      //leave blank for img
     });
     res.status(200).json({ success: true, response: post });
   } catch (err) {
@@ -48,39 +47,41 @@ async function filter(req, res) {
 }
 
 async function deletePost(req, res) {
+  console.log(req.body);
   try {
-    deletePost = await PostModel.findByIdAndDelete(req.body.p_id).exec();
-    let posts = await PostModel.find({}).exec();
+    deletePost = await Post.findByIdAndDelete(req.body.p_id).exec();
+    console.log(deletePost);
+    let posts = await Post.find({}).exec();
     res.status(200).json(posts);
   } catch (err) {
     res.status(400).json(err);
   }
 }
 
-async function editPost(req, res) {
-  console.log(req.body);
-  try {
-    let posts = await PostModel.findByIdAndUpdate(
-      { _id: req.body.id },
-      {
-        LocationName: req.body.LocationName,
-        Address: req.body.address,
-        Tags: req.body.tags,
-        Fee: req.body.fee,
-        Descrioption: req.body.descrioption,
-      },
-      { new: true }
-    ).exec();
-    res.status(200).json(posts);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-}
+// async function editPost(req, res) {
+//   console.log(req.body);
+//   try {
+//     let posts = await PostModel.findByIdAndUpdate(
+//       { _id: req.body.id },
+//       {
+//         LocationName: req.body.LocationName,
+//         Address: req.body.address,
+//         Tags: req.body.tags,
+//         Fee: req.body.fee,
+//         Descrioption: req.body.descrioption,
+//       },
+//       { new: true }
+//     ).exec();
+//     res.status(200).json(posts);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// }
 
 module.exports = {
   index,
   create,
   filter,
   deletePost,
-  editPost,
+  // editPost,
 };
