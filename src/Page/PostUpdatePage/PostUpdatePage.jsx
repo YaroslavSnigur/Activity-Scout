@@ -1,32 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+
 import { Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-function PostCreatePage(props) {
-  const [form, setForm] = useState({
-    author: props.user._id,
-    locationName: "",
-    address: "",
-    tags: [],
-    fee: "",
-    description: "",
-    img: "",
-  });
+function PostUpdatePage(props) {
+  const params = useParams();
+  const [form, setForm] = useState([]);
+  useEffect(() => {
+    getPostDetails();
+  }, []);
+  const getPostDetails = async () => {
+    console.log(props.user._id);
+    let result = await fetch(`/api/posts`);
+    result = await result.json();
+    let post = result.response.find((element) => element._id === params.id);
+    console.log(post.Address);
+    setForm({
+      author: props.user._id,
+      LocationName: post.LocationName,
+      address: post.Address,
+      tags: post.Tags,
+      fee: post.Fee,
+      description: post.Description,
+      img: post.img,
+    });
+  };
+
   const formRef = React.createRef();
 
   const handleChange = (e) => {
+    console.log("---------------", e.target.checkValidity());
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const createPost = async () => {
+  const updatePost = async () => {
     if (!formRef.current.checkValidity()) return;
     try {
-      const response = await fetch("/api/posts", {
-        method: "POST",
+      const response = await fetch(`/api/posts/update/${params.id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,10 +57,9 @@ function PostCreatePage(props) {
         img: "",
       });
     } catch (err) {
-      console.log(err.response.data);
+      console.log(err);
     }
   };
-
   return (
     <div className="PostCreatePage">
       <AppBar position="static">
@@ -129,9 +143,9 @@ function PostCreatePage(props) {
           required
         />
         <br />
-        <Link to="/">
-          <Button variant="contained" onClick={createPost}>
-            Create
+        <Link to="/profile">
+          <Button variant="contained" onClick={updatePost}>
+            Update
           </Button>
           <br /> <br />
           <Button variant="contained">Back</Button>
@@ -141,4 +155,4 @@ function PostCreatePage(props) {
   );
 }
 
-export default PostCreatePage;
+export default PostUpdatePage;
