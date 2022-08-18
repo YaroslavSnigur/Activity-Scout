@@ -38,8 +38,11 @@ function Nav(props) {
                 name="Upload a Spot"
                 styleRef="UploadSpotButton"
                 route="/createPost"
+                user={props.user}
             />
+
             <div style={{ display: props.user ? "none" : "flex" }}>
+
                 <button
                     className="LoginButton"
                     onClick={() => {

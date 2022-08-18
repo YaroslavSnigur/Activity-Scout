@@ -22,7 +22,7 @@ function Map(props) {
         const listOfMarkers = markers.map((position, idx) =>
             <Marker key={`marker-${idx}`} position={position} >
                 <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
+                    This is your activity
                 </Popup>
             </Marker>
         )

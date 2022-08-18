@@ -5,6 +5,7 @@ import { Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import "./PostCreatePage.css"
 
 function PostCreatePage(props) {
   const [form, setForm] = useState({
@@ -47,12 +48,9 @@ function PostCreatePage(props) {
   };
   return (
     <div className="PostCreatePage">
-      <AppBar position="static">
-        <Typography
-          variant="h3"
-          noWrap
-          component="h1"
-          sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+      <AppBar position="static" >
+        <Typography className="create-post-header"
+          variant="h4" component="h4"
         >
           Creating A New Spot
         </Typography>
@@ -65,6 +63,7 @@ function PostCreatePage(props) {
         noValidate
         autoComplete="off"
         ref={formRef}
+        className="create-post-form"
       >
         <br />
         <TextField
@@ -117,13 +116,15 @@ function PostCreatePage(props) {
           required
         />
         <br />
+        <br />
 
         <Link to="/">
-          <Button variant="contained" onClick={createPost}>
+          <Button className="post-create-button" variant="contained" onClick={createPost}>
             Create
           </Button>
           <br /> <br />
-          <Button variant="contained">Back</Button>
+          <div className="post-back-button"> <Button variant="contained">Back</Button></div>
+
         </Link>
       </Box>
     </div>
