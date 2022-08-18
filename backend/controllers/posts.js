@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 var uuidv4 = require("uuid4");
 const User = require("../models/user");
+const multer = require("multer");
 
 async function index(req, res) {
   try {
@@ -26,8 +27,10 @@ async function create(req, res) {
       Tags: req.body.tags,
       Fee: req.body.fee,
       Description: req.body.description,
-      //leave blank for img
+
+      img: req.body.img,
     });
+    console.log(post);
     res.status(200).json({ success: true, response: post });
   } catch (err) {
     console.log(err);
@@ -35,20 +38,45 @@ async function create(req, res) {
   }
 }
 
-async function filter(req, res) {
+async function deletePost(req, res) {
+  console.log(req.body);
   try {
-    console.log(req.query);
-    const filteredPosts = await Post.find({ Tags: "1" });
-    console.log("find 1------------", filteredPosts);
-    res.status(200).json({ success: true, response: filteredPosts });
+    deletePost = await Post.findByIdAndDelete(req.body.p_id).exec();
+    console.log(deletePost);
+    let posts = await Post.find({}).exec();
+    res.status(200).json(posts);
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ success: false, response: err });
+    res.status(400).json(err);
+  }
+}
+
+async function updatePost(req, res) {
+  const oldPost = await Post.findById(req.params.id);
+
+  const user = await User.findById(req.body.author);
+  try {
+    const post = await Post.updateOne(
+      { _id: req.params.id },
+      {
+        Author: user,
+        LocationName: req.body.LocationName,
+        Address: req.body.address,
+        Tags: req.body.tags,
+        Fee: req.body.fee,
+        Description: req.body.description,
+        //leave blank for img
+      }
+    );
+
+    res.status(200).json({ success: true, response: post });
+  } catch (err) {
+    res.status(400).json(err);
   }
 }
 
 module.exports = {
   index,
   create,
-  filter,
+  deletePost,
+  update: updatePost,
 };

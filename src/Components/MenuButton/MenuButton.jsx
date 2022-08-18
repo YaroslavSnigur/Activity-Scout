@@ -4,11 +4,15 @@ import "./MenuButton.css"
 
 function MenuButton(props) {
   return (
-    <>
-      <Link to={props.route}>
-        <button className="MenuButton">{props.name}</button>
-      </Link>
-    </>
+    <div style={{ display: props.user ? "flex" : "none" }}>
+      <>
+        <Link to={props.route}>
+          <button className="MenuButton">{props.name}</button>
+        </Link>
+      </>
+
+    </div>
+
   );
 }
 
