@@ -7,14 +7,14 @@ function ProfilePage(props) {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    getPosts();
     let token = localStorage.getItem("token");
     if (token) {
       // YOU DO: check expiry!
       let userDoc = JSON.parse(atob(token.split(".")[1])).user; // decode jwt token
       setUser(userDoc);
     }
-  }, [posts]);
+    getPosts();
+  }, []);
   const getPosts = async () => {
     try {
       const response = await fetch("/api/posts");
@@ -22,7 +22,7 @@ function ProfilePage(props) {
       const postsArr = await response.json();
       let foundEvent = [];
       postsArr.response.forEach((element) => {
-        if (element.Author === user._id) {
+        if (element.Author === props.user._id) {
           foundEvent.push(element);
         }
       });
@@ -37,8 +37,8 @@ function ProfilePage(props) {
   return (
     <div className="ProfilePage">
       <h1>Profile Page</h1>
-      <p>name:{user.name}</p>
-      <p>email:{user.email}</p>
+      <p>name:{props.user.name}</p>
+      <p>email:{props.user.email}</p>
       {posts && posts.map((e) => <ProfileCard {...e} />)}
       <Link to="/">
         <button>BACK</button>
