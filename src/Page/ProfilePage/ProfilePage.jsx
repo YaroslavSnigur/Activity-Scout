@@ -14,7 +14,7 @@ function ProfilePage(props) {
       let userDoc = JSON.parse(atob(token.split(".")[1])).user; // decode jwt token
       setUser(userDoc);
     }
-  }, [posts]);
+  }, []);
   const getPosts = async () => {
     try {
       const response = await fetch("/api/posts");
