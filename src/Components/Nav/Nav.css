@@ -17,12 +17,14 @@
 
 .LoginButton,
 .SignUpButton,
-.SignOutButton {
+.SignOutButton,
+.my-profile-button {
     height: 50px;
     font-size: 18px;
     border-radius: 5px;
     color: white;
     width: 100px;
+    cursor: pointer;
 }
 
 .LoginButton,
