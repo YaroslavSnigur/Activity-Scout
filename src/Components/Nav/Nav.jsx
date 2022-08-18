@@ -12,7 +12,7 @@ function Nav(props) {
     const [showLogin, setShowLogin] = useState({
         showLogin: false,
     });
-
+    
     const [showSignUp, setShowSignUp] = useState({
         showSignUp: false,
     });
@@ -80,7 +80,13 @@ function Nav(props) {
 
             </div>
         </div>
-    );
+        <MenuButton name="My Profile" styleRef="" route="/profile" />
+        <button className="SignOutButton" onClick={handleLogout}>
+          Sign Out
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default Nav;
