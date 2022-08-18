@@ -22,7 +22,7 @@ function ProfilePage(props) {
       const postsArr = await response.json();
       let foundEvent = [];
       postsArr.response.forEach((element) => {
-        if (element.Author === user.name) {
+        if (element.Author === user._id) {
           foundEvent.push(element);
         }
       });

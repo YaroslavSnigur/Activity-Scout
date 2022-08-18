@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-
 import { Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
-function PostCreatePage() {
+function PostCreatePage(props) {
   const [form, setForm] = useState({
-    author: "admin",
+    author: props.user._id,
     locationName: "",
     address: "",
     tags: [],
@@ -19,22 +18,6 @@ function PostCreatePage() {
     //leave blank for photo
   });
   const formRef = React.createRef();
-  //   const [user, setUsers] = useState([]);
-
-  //   useEffect(() => {
-  //     getRoles();
-  //   }, []);
-
-  const getUsers = async () => {
-    //CHANGE TO USER LATERON
-    // try {
-    //   const response = await fetch("/api/roles");
-    //   const rolesRes = await response.json();
-    //   setRoles(rolesRes.response);
-    // } catch (err) {
-    //   console.log(err);
-    // }
-  };
 
   const handleChange = (e) => {
     console.log("---------------", e.target.checkValidity());
@@ -52,7 +35,7 @@ function PostCreatePage() {
         body: JSON.stringify(form),
       });
       setForm({
-        author: "admin",
+        author: props.user._id,
         locationName: "",
         address: "",
         tags: [],
@@ -63,7 +46,6 @@ function PostCreatePage() {
       console.log(err);
     }
   };
-
   return (
     <div className="PostCreatePage">
       <AppBar position="static">
@@ -136,28 +118,13 @@ function PostCreatePage() {
           required
         />
         <br />
-        {/* <FormControl fullWidth>
-          <InputLabel>Role</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={form.role}
-            name="role"
-            label="Role"
-            onChange={handleChange}
-          >
-            {roles &&
-              roles.map((r) => (
-                <MenuItem key={r._id} value={r._id}>
-                  {r.title} {r.isManager ? " / Manager" : ""}
-                </MenuItem>
-              ))}
-          </Select>
-        </FormControl> */}
+
         <Link to="/">
           <Button variant="contained" onClick={createPost}>
             Create
           </Button>
+          <br /> <br />
+          <Button variant="contained">Back</Button>
         </Link>
       </Box>
     </div>
