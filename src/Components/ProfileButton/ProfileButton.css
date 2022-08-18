@@ -1,0 +1,11 @@
+.ProfileButton {
+    height: 50px;
+    font-size: 18px;
+    border-radius: 5px;
+    color: white;
+    width: 100px;
+    background-color: rgb(255, 118, 5);
+    border: none;
+    margin-right: 15px;
+    cursor: pointer;
+}

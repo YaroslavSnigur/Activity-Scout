@@ -3,7 +3,7 @@ import "./ProfileCard.css";
 
 function ProfileCard(props) {
   return (
-    <div>
+    <div id="profile-card">
       {props.LocationName}
       {props.Address}
       {props.Fee}

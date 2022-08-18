@@ -2,23 +2,21 @@ import React, { useState } from "react";
 import LoginForm from "../LoginForm/LoginForm";
 import SignUpForm from "../SignUpForm/SignUpForm";
 import MenuButton from "../MenuButton/MenuButton";
-import "./Nav.css"
+import "./Nav.css";
+import ProfileButton from "../ProfileButton/ProfileButton";
 
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 
 function Nav(props) {
-  const [showLogin, setShowLogin] = useState({
-    showLogin: false,
-  });
+    const [showLogin, setShowLogin] = useState({
+        showLogin: false,
+    });
 
-  const [showSignUp, setShowSignUp] = useState({
-    showSignUp: false,
-  });
-  
     const [showSignUp, setShowSignUp] = useState({
         showSignUp: false,
     });
+
 
     const handleLogout = () => {
         localStorage.removeItem("token");
@@ -58,16 +56,23 @@ function Nav(props) {
                 >
                     Sign Up
                 </button>
-                <LoginForm showLogin={showLogin.showLogin} setShowLogin={setShowLogin} setUserInState={props.setUserInState} user={props.user} />
+                <LoginForm
+                    showLogin={showLogin.showLogin}
+                    setShowLogin={setShowLogin}
+                    setUserInState={props.setUserInState}
+                    user={props.user}
+                />
                 <SignUpForm
                     showSignUp={showSignUp.showSignUp}
                     setShowSignUp={setShowSignUp}
-                    setUserInState={props.setUserInState} user={props.user}
-                /> </div>
+                    setUserInState={props.setUserInState}
+                    user={props.user}
+                />{" "}
+            </div>
 
             <div className="user-loggedin-container" style={{ display: props.user ? "flex" : "none" }}>
                 <div className="user-loggedin"><span>Logged as</span> <span className="user-loggedin-span">{props.user && props.user.name}</span></div>
-                <MenuButton name="My Profile" styleRef="" route="/profile" />
+                <ProfileButton name="My Profile" styleRef="" route="/profile" className="my-profile-button" />
                 <button
                     className="SignOutButton"
                     onClick={handleLogout}

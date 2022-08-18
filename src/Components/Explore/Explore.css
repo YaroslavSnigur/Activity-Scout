@@ -1,0 +1,15 @@
+.Explore {
+    text-align: center;
+    background-color: whitesmoke;
+}
+
+.ExploreText {
+    font-size: 28px;
+    font-weight: bold;
+    background-color: whitesmoke;
+    margin-top: 20px;
+}
+
+.ExploreText>p {
+    background-color: whitesmoke;
+}

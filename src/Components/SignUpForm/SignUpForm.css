@@ -1,6 +1,5 @@
 .signup-popup {
     display: none;
-    background-color: rgba(255, 255, 255, 0.9);
     position: fixed;
     z-index: 50;
     width: 100%;
@@ -12,9 +11,105 @@
     height: 100vh;
 }
 
+.signup-container {
+    width: 500px;
+    height: 540px;
+    background-color: grey;
+    border-radius: 5px;
+}
+
 .signup-form-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 30vh;
+    margin-top: 50px;
+}
+
+.signup-form-row {
+    margin-bottom: 20px;
+}
+
+.signup-form-row>label {
+    width: 100%;
+    display: flex;
+    margin-right: 20px;
+    color: whitesmoke;
+    margin-bottom: 10px;
+}
+
+.signup-form-row>input[type=text] {
+    border-radius: 5px;
+    height: 40px;
+    background-color: whitesmoke;
+    width: 300px;
+    font-size: 20px;
+    color: grey;
+    text-align: center;
+}
+
+.signup-form-row>textarea:focus,
+.signup-form-row>input:focus {
+    outline: none;
+    color: grey;
+}
+
+.signup-form-row>input[type=password] {
+    border-radius: 5px;
+    height: 40px;
+    background-color: whitesmoke;
+    width: 300px;
+    font-size: 20px;
+    color: grey;
+    text-align: center;
+}
+
+.signup-form-row>input[type=email] {
+    border-radius: 5px;
+    height: 40px;
+    background-color: whitesmoke;
+    width: 300px;
+    font-size: 20px;
+    color: grey;
+    text-align: center;
+}
+
+.sign-up-form-button {
+    height: 50px;
+    font-size: 18px;
+    border-radius: 5px;
+    color: white;
+    width: 100px;
+    background-color: rgb(255, 118, 5);
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.sign-up-close-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+}
+
+.sign-up-close-button {
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(255, 118, 5);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.sign-up-error-message {
+    text-align: center;
+    color: rgb(255, 118, 5);
+    margin-top: 60px;
 }
