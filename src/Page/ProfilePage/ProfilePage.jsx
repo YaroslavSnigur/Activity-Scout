@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ProfileCard from "../../Components/ProfileCard/ProfileCard";
+import "./ProfilePage.css"
 
 function ProfilePage(props) {
   const [posts, setPosts] = useState([]);
@@ -36,13 +37,20 @@ function ProfilePage(props) {
 
   return (
     <div className="ProfilePage">
-      <h1>Profile Page</h1>
-      <p>name:{props.user.name}</p>
-      <p>email:{props.user.email}</p>
-      {posts && posts.map((e) => <ProfileCard {...e} />)}
-      <Link to="/">
-        <button>BACK</button>
-      </Link>
+      <div className="profile-header"><h1>&nbsp;&nbsp;&nbsp;Profile Page</h1></div>
+      <div className="profile-container">
+
+        <div><p>Name:   {user.name}</p></div>
+        <div><p>Email:   {user.email}</p></div>
+        <div><p>Your activities:</p></div>
+        <div className="profilecard-container">
+          {posts && posts.map((e) => <ProfileCard {...e} />)}</div>
+        <div className="profile-button-container">
+          <Link to="/">
+            <button className="profile-button">BACK</button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

@@ -6,17 +6,18 @@ import "./ProfileCard.css";
 function ProfileCard(props) {
   return (
     <div id="profile-card">
-      {props.LocationName}
-      {props.Address}
-      {props.Fee}
-      {props.Description}
 
-      <Link to={"/update/" + props._id}>
+      <div>Name:&nbsp;{props.LocationName}</div>
+      <div>Location:&nbsp;{props.Address}</div>
+      <div>Fees:&nbsp;{props.Fee}</div>
+      <div>Description:&nbsp;{props.Description}</div>
+      <div className="profile-card-button-container">
+        <div > <Link to={"/update/" + props._id}>
         {" "}
         <button className="ButtonEdit">Edit</button>
-      </Link>
-
-      <button className="ButtonDelete">Delete</button>
+      </Link></div>
+        <div> <button className="ButtonDelete">Delete</button></div>
+      </div>
     </div>
   );
 }
