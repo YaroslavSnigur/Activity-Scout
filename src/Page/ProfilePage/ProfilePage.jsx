@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ProfileCard from "../../Components/ProfileCard/ProfileCard";
-import "./ProfilePage.css"
+import "./ProfilePage.css";
 
 function ProfilePage(props) {
   const [posts, setPosts] = useState([]);
@@ -14,6 +14,7 @@ function ProfilePage(props) {
       let userDoc = JSON.parse(atob(token.split(".")[1])).user; // decode jwt token
       setUser(userDoc);
     }
+
     getPosts();
   }, []);
   const getPosts = async () => {
@@ -35,16 +36,40 @@ function ProfilePage(props) {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      let fetchResponse = await fetch("/api/posts/", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ p_id: id }),
+      });
+      if (!fetchResponse.ok) throw new Error("Fetch failed");
+      let posts = await fetchResponse.json();
+      setPosts(posts);
+    } catch (err) {}
+  };
+
   return (
     <div className="ProfilePage">
-      <div className="profile-header"><h1>&nbsp;&nbsp;&nbsp;Profile Page</h1></div>
+      <div className="profile-header">
+        <h1>&nbsp;&nbsp;&nbsp;Profile Page</h1>
+      </div>
       <div className="profile-container">
-
-        <div><p>Name:   {user.name}</p></div>
-        <div><p>Email:   {user.email}</p></div>
-        <div><p>Your activities:</p></div>
+        <div>
+          <p>Name: {user.name}</p>
+        </div>
+        <div>
+          <p>Email: {user.email}</p>
+        </div>
+        <div>
+          <p>Your activities:</p>
+        </div>
         <div className="profilecard-container">
-          {posts && posts.map((e) => <ProfileCard {...e} />)}</div>
+          {posts &&
+            posts.map((e) => (
+              <ProfileCard {...e} handleDelete={handleDelete} />
+            ))}
+        </div>
         <div className="profile-button-container">
           <Link to="/">
             <button className="profile-button">BACK</button>

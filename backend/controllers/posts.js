@@ -27,6 +27,7 @@ async function create(req, res) {
       Tags: req.body.tags,
       Fee: req.body.fee,
       Description: req.body.description,
+
       img: req.body.img,
     });
     console.log(post);
@@ -34,6 +35,18 @@ async function create(req, res) {
   } catch (err) {
     console.log(err);
     res.status(500).json({ success: false, response: err });
+  }
+}
+
+async function deletePost(req, res) {
+  console.log(req.body);
+  try {
+    deletePost = await Post.findByIdAndDelete(req.body.p_id).exec();
+    console.log(deletePost);
+    let posts = await Post.find({}).exec();
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(400).json(err);
   }
 }
 
@@ -57,13 +70,13 @@ async function updatePost(req, res) {
 
     res.status(200).json({ success: true, response: post });
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ success: false, response: err });
+    res.status(400).json(err);
   }
 }
 
 module.exports = {
   index,
   create,
+  deletePost,
   update: updatePost,
 };
