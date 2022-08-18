@@ -41,7 +41,10 @@ class App extends Component {
               />
             }
           />
-          <Route path="/createPost" element={<PostCreatePage />} />
+          <Route
+            path="/createPost"
+            element={<PostCreatePage user={this.state.user} />}
+          />
 
           <Route
             path="/profile"

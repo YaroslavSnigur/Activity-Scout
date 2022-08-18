@@ -7,24 +7,9 @@ import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
-import { createTheme } from "@material-ui/core";
-import { ThemeProvider } from "@material-ui/core";
-import { orange, red } from "@material-ui/core/colors";
-
-export const theme = createTheme({
-  palette: {
-    primary: {
-      main: red[600],
-    },
-    secondary: {
-      main: orange[600],
-    },
-  },
-});
-
-function PostCreatePage() {
+function PostCreatePage(props) {
   const [form, setForm] = useState({
-    author: "admin",
+    author: props.user._id,
     locationName: "",
     address: "",
     tags: [],
@@ -33,22 +18,6 @@ function PostCreatePage() {
     //leave blank for photo
   });
   const formRef = React.createRef();
-  //   const [user, setUsers] = useState([]);
-
-  //   useEffect(() => {
-  //     getRoles();
-  //   }, []);
-
-  const getUsers = async () => {
-    //CHANGE TO USER LATERON
-    // try {
-    //   const response = await fetch("/api/roles");
-    //   const rolesRes = await response.json();
-    //   setRoles(rolesRes.response);
-    // } catch (err) {
-    //   console.log(err);
-    // }
-  };
 
   const handleChange = (e) => {
     console.log("---------------", e.target.checkValidity());
@@ -66,7 +35,7 @@ function PostCreatePage() {
         body: JSON.stringify(form),
       });
       setForm({
-        author: "admin",
+        author: props.user._id,
         locationName: "",
         address: "",
         tags: [],
@@ -77,107 +46,87 @@ function PostCreatePage() {
       console.log(err);
     }
   };
-
   return (
-    <div>
-      <ThemeProvider theme={theme}>
-        <div className="PostCreatePage">
-          <AppBar position="static">
-            <Typography
-              variant="h3"
-              noWrap
-              component="h1"
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-            >
-              Creating A New Spot
-            </Typography>
-          </AppBar>
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, width: "25ch" },
-            }}
-            noValidate
-            autoComplete="off"
-            ref={formRef}
-          >
-            <br />
-            <TextField
-              id="outlined-basic"
-              label="LocationName"
-              variant="outlined"
-              name="LocationName"
-              value={form.LocationName || ""}
-              onChange={handleChange}
-              required
-            />
-            <br />
-            <TextField
-              id="outlined-basic"
-              label="address"
-              variant="outlined"
-              name="address"
-              value={form.address}
-              onChange={handleChange}
-              required
-            />
-            <br />
-            <TextField
-              id="outlined-basic"
-              label="tags"
-              variant="outlined"
-              name="tags"
-              value={form.tags}
-              onChange={handleChange}
-              required
-            />
-            <br />
-            <TextField
-              id="outlined-basic"
-              label="fee"
-              variant="outlined"
-              name="fee"
-              value={form.fee}
-              onChange={handleChange}
-              required
-            />
-            <br />
-            <TextField
-              id="outlined-basic"
-              label="description"
-              variant="outlined"
-              name="description"
-              value={form.description}
-              onChange={handleChange}
-              required
-            />
-            <br />
-            {/* <FormControl fullWidth>
-          <InputLabel>Role</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={form.role}
-            name="role"
-            label="Role"
-            onChange={handleChange}
-          >
-            {roles &&
-              roles.map((r) => (
-                <MenuItem key={r._id} value={r._id}>
-                  {r.title} {r.isManager ? " / Manager" : ""}
-                </MenuItem>
-              ))}
-          </Select>
-        </FormControl> */}
-            <Link to="/">
-              <Button color="primary" variant="contained" onClick={createPost}>
-                Create
-              </Button>
-            </Link>
-          </Box>
-        </div>
-      </ThemeProvider>
+    <div className="PostCreatePage">
+      <AppBar position="static">
+        <Typography
+          variant="h3"
+          noWrap
+          component="h1"
+          sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+        >
+          Creating A New Spot
+        </Typography>
+      </AppBar>
+      <Box
+        component="form"
+        sx={{
+          "& > :not(style)": { m: 1, width: "25ch" },
+        }}
+        noValidate
+        autoComplete="off"
+        ref={formRef}
+      >
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="LocationName"
+          variant="outlined"
+          name="LocationName"
+          value={form.LocationName || ""}
+          onChange={handleChange}
+          required
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="address"
+          variant="outlined"
+          name="address"
+          value={form.address}
+          onChange={handleChange}
+          required
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="tags"
+          variant="outlined"
+          name="tags"
+          value={form.tags}
+          onChange={handleChange}
+          required
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="fee"
+          variant="outlined"
+          name="fee"
+          value={form.fee}
+          onChange={handleChange}
+          required
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="description"
+          variant="outlined"
+          name="description"
+          value={form.description}
+          onChange={handleChange}
+          required
+        />
+        <br />
+
+        <Link to="/">
+          <Button variant="contained" onClick={createPost}>
+            Create
+          </Button>
+          <br /> <br />
+          <Button variant="contained">Back</Button>
+        </Link>
+      </Box>
     </div>
   );
 }

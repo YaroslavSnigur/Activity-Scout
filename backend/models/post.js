@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 var uuidv4 = require("uuid4");
 const postSchema = new Schema(
   {
-    // Author: { type: Schema.Types.ObjectId, ref: "User" },
-    Author: String,
+    Author: { type: Schema.Types.ObjectId, ref: "User" },
+    // Author: String,
     id: { type: String, default: uuidv4 },
     LocationName: { type: String, required: true },
     Address: String,
