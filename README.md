@@ -5,12 +5,8 @@ Ever wondered which outdoor activities or events are near you? Well the solution
 [Launch Scout]()
 
 # Sceenshots
-
-<img width="1728" alt="Screen Shot 2022-08-18 at 4 59 43 PM" src="https://user-images.<img width="1728" alt="Screen Shot 2022-08-18 at 5 00 46 PM" src="https://user-images.githubusercontent.com/105532231/185494289-668aa2b3-984b-4293-aa8d-ac6dbdc5f8b4.png">
-githubusercontent.com/105532231/185494257-212327c9-e673-43ca-9d9c-5073c4f6ecb1.png">
-![Uploading Screen Shot 2022-08-18 at 5.00.46 PM.png…]()
-
-
+<img width="1728" alt="Screen Shot 2022-08-18 at 4 59 43 PM" src="https://user-images.githubusercontent.com/105532231/185494424-7532b93e-1806-410c-a821-ca05743c09db.png">
+<img width="1728" alt="Screen Shot 2022-08-18 at 5 00 46 PM" src="https://user-images.githubusercontent.com/105532231/185494445-687ec44d-f051-4852-b6a6-e9e6c34d7cf8.png">
 
 # Planning Material
 - [ERD](https://lucid.app/lucidchart/d70259ab-d3d4-429f-9c01-b5a06c56aaa9/edit?invitationId=inv_a0c76acf-d25e-4863-b920-9434fede47f6&page=0_0#)
