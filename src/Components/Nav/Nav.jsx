@@ -87,11 +87,11 @@ function Nav(props) {
           route="/profile"
           className="my-profile-button"
         />
+        <MenuButton name="My Profile" styleRef="" route="/profile" />
+        <button className="SignOutButton" onClick={handleLogout}>
+          Sign Out
+        </button>
       </div>
-      <MenuButton name="My Profile" styleRef="" route="/profile" />
-      <button className="SignOutButton" onClick={handleLogout}>
-        Sign Out
-      </button>
     </div>
   );
 }
