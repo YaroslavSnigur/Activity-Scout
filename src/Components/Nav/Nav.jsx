@@ -91,7 +91,6 @@ function Nav(props) {
           Sign Out
         </button>
       </div>
-
     </div>
   );
 }

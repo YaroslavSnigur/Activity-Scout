@@ -117,7 +117,7 @@ function PostCreatePage(props) {
         />
         <br />
         <br />
-
+        <p>Please copy the image address here:</p>
         <TextField
           id="outlined-basic"
           label="img"
@@ -125,7 +125,6 @@ function PostCreatePage(props) {
           name="img"
           value={form.img}
           onChange={handleChange}
-          required
         />
         <br />
         <Link to="/">
